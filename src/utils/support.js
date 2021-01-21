@@ -1,3 +1,4 @@
+// could optimize by caching these
 const exactName = (r, term) => r.name.toLowerCase().split(" ").includes(term)
 const inEmail = (r, term) => r.email.toLowerCase().includes(term)
 const inName = (r, term) => r.name.toLowerCase().includes(term)
@@ -7,15 +8,24 @@ export const filter = (results, term) => {
   return results.filter(r => inName(r, lowerTerm) || inEmail(r, lowerTerm));
 };
 
+export const toObject = (results) => {
+  const obj = {};
+  results.forEach(r => obj[r.id] = r)
+
+  return obj;
+};
+
 export const sort = (results, term) => {
-  return results.sort((a, b) => {
-    if (exactName(a, term)) return -1;
-    if (exactName(b, term)) return 1;
+  const lowerTerm = term.toLowerCase();
+  return Object.values(results).sort((a, b) => {
+    // Keep in same order if possible
+    if (exactName(a, lowerTerm)) return -1;
+    if (exactName(b, lowerTerm)) return 1;
 
-    if (inEmail(a, term)) return -1;
-    if (inEmail(b, term)) return 1;
+    if (inEmail(a, lowerTerm)) return -1;
+    if (inEmail(b, lowerTerm)) return 1;
 
-    // doesn't matter which is first
     return -1;
   })
 };
+

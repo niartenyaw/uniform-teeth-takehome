@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import './SearchBar.css';
+import { useContext } from 'react';
+import SearchContext from '../contexts/SearchContext';
 
-function SearchBar({ term, setTerm }) {
+function SearchBar() {
+  const { term, setTerm } = useContext(SearchContext);
   const onChange = (e) => setTerm(e.target.value);
 
   return (
-    <div>
-      <form>
-        <input
-          type="text"
-          value={term}
-          onChange={onChange} />
-      </form>
-    </div>
+    <form className="search-bar-form">
+      <input
+        type="text"
+        value={term}
+        onChange={onChange} />
+    </form>
   );
 }
 

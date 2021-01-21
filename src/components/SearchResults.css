@@ -1,0 +1,10 @@
+#result-heading {
+  border: none;
+  padding: 8px 21px;
+}
+
+#result-heading p {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 30px;
+}

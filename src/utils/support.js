@@ -10,8 +10,7 @@ export const filter = (results, term) => {
 
 export const toObject = (results) => {
   const obj = {};
-  results.forEach(r => obj[r.id] = r)
-
+  results.forEach(r => obj[r.id] = r);
   return obj;
 };
 

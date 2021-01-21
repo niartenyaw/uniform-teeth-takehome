@@ -1,9 +1,11 @@
-function SearchResult({ result }) {
+import './SearchResult.css';
+
+function SearchResult({ result, selected, toggleSelected }) {
   return (
-    <div>
-      <p>{result.name}</p>
+    <li className={ selected ? "result-item selected" : "result-item" } onClick={toggleSelected}>
+      <p className="result-item-name">{result.name}</p>
       <p>{result.email}</p>
-    </div>
+    </li>
   )
 }
 

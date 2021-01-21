@@ -1,0 +1,29 @@
+.result-item {
+  margin: 4px 0;
+  border: 2px solid #EEF0F0;
+  padding: 3px 21px;
+  border-radius: 8px;
+  display: flex;
+}
+
+.selected {
+  background-color: #c6d0d2;
+  border: 2px solid #c6d0d2;
+}
+
+.result-item p {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: #467179;
+	margin: 0;
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.result-item-name {
+  width: 260px;
+}

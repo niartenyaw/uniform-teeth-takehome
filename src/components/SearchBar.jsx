@@ -1,19 +1,14 @@
 import { useState } from 'react';
-import Api from '../util/api';
-import debounce from 'underscore/modules/debounce.js'
-
-const debouncedSearch = debounce((term, setResults) => {
-  Api.search(term)
-    .then(r => setResults(r))
-}, 200);
+import { search } from '../utils';
 
 function SearchBar({ setResults }) {
-  const [search, setSearch] = useState('');
+  const [term, setTerm] = useState('');
 
+  // TODO: do something different when it is blank?
   const onChange = (e) => {
-    const term = e.target.value;
-    setSearch(term);
-    debouncedSearch(term, setResults);
+    const newTerm = e.target.value;
+    setTerm(newTerm);
+    search(newTerm, setResults)
   };
 
   return (
@@ -21,7 +16,7 @@ function SearchBar({ setResults }) {
       <form>
         <input
           type="text"
-          value={search}
+          value={term}
           onChange={onChange} />
       </form>
     </div>
